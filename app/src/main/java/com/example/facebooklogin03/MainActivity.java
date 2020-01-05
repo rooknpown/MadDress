@@ -4,9 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -14,13 +15,13 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
-import javax.security.auth.Subject;
-
 public class MainActivity extends AppCompatActivity {
 
     private CallbackManager callbackManager;
     private TextView textView;
     private LoginButton loginButton;
+    Button tel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +58,16 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
                         textView.setText("Successfully logged in");
-                        Intent intent = new Intent(getApplicationContext(), SubActivity.class);
-                        startActivity(intent);
+                        tel = (Button) findViewById(R.id.tel);
+                        tel.setOnClickListener(new View.OnClickListener(){
+
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getApplicationContext(), ContactActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+
                     }
 
                     @Override
