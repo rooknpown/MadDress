@@ -34,14 +34,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="contacts"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton"
         tools:layout_editor_absoluteX="76dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/imageButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="이미지"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="76dp" />
 

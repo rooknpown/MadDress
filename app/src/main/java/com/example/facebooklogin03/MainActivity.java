@@ -2,6 +2,7 @@ package com.example.facebooklogin03;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView;
     private LoginButton loginButton;
     Button tel;
+    Button imageButton;
 
 
     @Override
@@ -33,6 +35,19 @@ public class MainActivity extends AppCompatActivity {
 
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("email");
+
+        //이미지 버튼 클릭시
+        imageButton = findViewById(R.id.imageButton);
+        imageButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ImageActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -58,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
                         textView.setText("Successfully logged in");
+                        //연락처 버튼 클릭시
                         tel = (Button) findViewById(R.id.tel);
                         tel.setOnClickListener(new View.OnClickListener(){
 
@@ -67,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         });
-
                     }
 
                     @Override
@@ -87,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
+
 
 
 }
