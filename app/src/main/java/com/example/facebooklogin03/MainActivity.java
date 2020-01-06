@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ImageActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CameraActivity.class);
                 startActivity(intent);
 
             }

@@ -1,7 +1,6 @@
 package com.example.facebooklogin03;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -28,16 +27,16 @@ public class ImageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_image);
         imageView = findViewById(R.id.imageView);
         textView = findViewById(R.id.textView);
-        colorView = findViewById(R.id.colorView);
+        colorView = findViewById(R.id.color);
         colorView2 = findViewById(R.id.colorView2);
-//        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image_12);
+
         imageView.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 x = (int) event.getX();
                 y = (int) event.getY();
-                Log.d("x와 y 좌표", "x:b "+x+" y: "+y);
+                Log.d("x와 y 좌표", "x: "+x+" y: "+y);
                 int width = v.getWidth();
                 int height = v.getHeight();
                 bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
