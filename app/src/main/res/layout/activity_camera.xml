@@ -38,4 +38,10 @@
         android:layout_height="wrap_content"
         android:text="TextView" />
 
+    <Button
+        android:id="@+id/btnsend"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:text="보내기!" />
+
 </LinearLayout>

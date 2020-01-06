@@ -28,6 +28,7 @@
         <activity android:name=".ContactActivity" />
         <activity android:name=".CameraActivity" />
         <activity android:name=".ImageActivity" />
+        <activity android:name=".PostActivity" />
 
     </application>
 

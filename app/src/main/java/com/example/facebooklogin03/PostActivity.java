@@ -1,5 +1,6 @@
 package com.example.facebooklogin03;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -17,20 +18,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
-public class ContactActivity extends AppCompatActivity {
+public class PostActivity extends AppCompatActivity {
     TextView textView;
     RecyclerView recyclerView;
     ArrayList<Contact> contactList;
@@ -41,13 +44,16 @@ public class ContactActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contact);
         textView = findViewById(R.id.textView);
         recyclerView = findViewById(R.id.recyclerView);
+        Intent intent = getIntent();
+        String topcolor = intent.getStringExtra("colortop");
+        String botcolor = intent.getStringExtra("colorbot");
 //        if (android.os.Build.VERSION.SDK_INT > 9) { //oncreate 에서 바로 쓰레드돌릴려고 임시방편으로 넣어둔소스
 //            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 //            StrictMode.setThreadPolicy(policy);
 //        }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
         String currentDateandTime = sdf.format(new Date());
-        new JSONTask().execute("http://192.249.19.252:2380/contacts?id=parkchaelin&date=" + currentDateandTime);
+        new JSONTask().execute("http://192.249.19.252:2380/post?id=parkchaelin&date=" + currentDateandTime + "&top=" + topcolor + "&bot=" + botcolor);
 
 
 
@@ -74,26 +80,26 @@ public class ContactActivity extends AppCompatActivity {
                     con = (HttpURLConnection) url.openConnection();
 //                    Log.d("message", "어디까지1");
 //
-                    con.setRequestMethod("GET");//POST방식으로 보냄
-//                    con.setRequestProperty("Cache-Control", "no-cache");//캐시 설정
-////                    con.setRequestProperty("Content-Type", "application/json");//application JSON 형식으로 전송
-//                    con.setRequestProperty("Content-Type", "application/x-www-form-url-urlencoded");
-////                    con.setRequestProperty("Accept", "text/html");//서버에 response 데이터를 html로 받음
-//                    con.setRequestProperty("Accept-Charset", "UTF-8");
-////                    con.setUseCaches(false);
-//                    con.setDoOutput(true);//Outstream으로 post 데이터를 넘겨주겠다는 의미
+                    con.setRequestMethod("POST");//POST방식으로 보냄
+                    con.setRequestProperty("Cache-Control", "no-cache");//캐시 설정
+//                    con.setRequestProperty("Content-Type", "application/json");//application JSON 형식으로 전송
+                    con.setRequestProperty("Content-Type", "application/x-www-form-url-urlencoded");
+//                    con.setRequestProperty("Accept", "text/html");//서버에 response 데이터를 html로 받음
+                    con.setRequestProperty("Accept-Charset", "UTF-8");
+//                    con.setUseCaches(false);
+                    con.setDoOutput(true);//Outstream으로 post 데이터를 넘겨주겠다는 의미
                     con.setDoInput(true);//Inputstream으로 서버로부터 응답을 받겠다는 의미
                     con.connect();
                     Log.d("message", "어디까지2");
 
-                    //서버로 보내기위해서 스트림 만듬
-//                    OutputStream outStream = con.getOutputStream();
-//                    Log.d("message", "어디까지3");
-//                    //버퍼를 생성하고 넣음
-//                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outStream));
-//                    writer.write(jsonObject.toString());
-//                    writer.flush();
-//                    writer.close();//버퍼를 받아줌
+//                    서버로 보내기위해서 스트림 만듬
+                    OutputStream outStream = con.getOutputStream();
+                    Log.d("message", "어디까지3");
+                    //버퍼를 생성하고 넣음
+                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outStream));
+                    writer.write(jsonObject.toString());
+                    writer.flush();
+                    writer.close();//버퍼를 받아줌
 
                     //서버로 부터 데이터를 받음
                     InputStream stream = con.getInputStream();
