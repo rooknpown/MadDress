@@ -47,13 +47,14 @@ public class PostActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String topcolor = intent.getStringExtra("colortop");
         String botcolor = intent.getStringExtra("colorbot");
+        String id = intent.getStringExtra(("id"));
 //        if (android.os.Build.VERSION.SDK_INT > 9) { //oncreate 에서 바로 쓰레드돌릴려고 임시방편으로 넣어둔소스
 //            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 //            StrictMode.setThreadPolicy(policy);
 //        }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
         String currentDateandTime = sdf.format(new Date());
-        new JSONTask().execute("http://192.249.19.252:2380/post?id=parkchaelin&date=" + currentDateandTime + "&top=" + topcolor + "&bot=" + botcolor);
+        new JSONTask().execute("http://192.249.19.252:2380/post?id="  + id + "&date=" + currentDateandTime + "&top=" + topcolor + "&bot=" + botcolor);
 
 
 

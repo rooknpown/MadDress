@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="name_array">
+        <item>이름 선택</item>
+        <item>권형근</item>
+        <item>기태헌</item>
+        <item>김강산</item>
+        <item>김병현</item>
+        <item>김소연</item>
+        <item>김영웅</item>
+        <item>김우림</item>
+        <item>김태영</item>
+        <item>김효일</item>
+        <item>박유찬</item>
+        <item>박채린</item>
+        <item>손현준</item>
+        <item>유희승</item>
+        <item>윤찬우</item>
+        <item>이재윤</item>
+        <item>이현구</item>
+        <item>이현재</item>
+        <item>임시현</item>
+        <item>정슬인</item>
+        <item>정예준</item>
+    </string-array>
+</resources>

@@ -47,7 +47,7 @@ public class ContactActivity extends AppCompatActivity {
 //        }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
         String currentDateandTime = sdf.format(new Date());
-        new JSONTask().execute("http://192.249.19.252:2380/contacts?id=parkchaelin&date=" + currentDateandTime);
+        new JSONTask().execute("http://192.249.19.252:2380/contacts?id=권형근&date=" + currentDateandTime);
 
 
 

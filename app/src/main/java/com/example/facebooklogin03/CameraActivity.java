@@ -16,8 +16,12 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +31,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CameraActivity extends AppCompatActivity {
@@ -39,6 +44,9 @@ public class CameraActivity extends AppCompatActivity {
     int i=0;
     Bitmap bitmap;
     Button SendButton;
+    Spinner spinner;
+    ArrayAdapter arrayAdapter;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,14 +57,24 @@ public class CameraActivity extends AppCompatActivity {
         colorView = findViewById(R.id.color);
         colorView2 = findViewById(R.id.color2);
         SendButton = findViewById(R.id.btnsend);
+        spinner = findViewById(R.id.spinner);
+
         SendButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
+                String text = spinner.getSelectedItem().toString();
                 Intent intent = new Intent(getApplicationContext(),PostActivity.class);
-                intent.putExtra("colortop",String.format("%03d",Redt)+ String.format("%03d",Bluet) + String.format("%03d",Greent));
-                intent.putExtra("colorbot",String.format("%03d",Redb)+ String.format("%03d",Blueb) + String.format("%03d",Greenb));
-                startActivity(intent);
+                if(text.equals("이름 선택")){
+                    Toast.makeText(CameraActivity.this, "이름을 선택하세요", Toast.LENGTH_SHORT).show();
+                }else{
+                    intent.putExtra("colortop",String.format("%03d",Redt)+ String.format("%03d",Bluet) + String.format("%03d",Greent));
+                    intent.putExtra("colorbot",String.format("%03d",Redb)+ String.format("%03d",Blueb) + String.format("%03d",Greenb));
+                    intent.putExtra("id", text);
+                    startActivity(intent);
+                }
+
+
 
             }
         });
@@ -79,7 +97,7 @@ public class CameraActivity extends AppCompatActivity {
 
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.CAMERA},
-                       CAMERA_REQUEST_CODE);
+                        CAMERA_REQUEST_CODE);
 
                 //requestPermissions 메소드는 비동기적으로 동작한다. 왜냐면 이 권한 검사 및 요청 메소드는
                 //메인 액티비티에서 동작하기떄문에(메인쓰레드) 사용자 반응성이 굉장히 중요한 파트이다. 여기서 시간을
@@ -143,6 +161,10 @@ public class CameraActivity extends AppCompatActivity {
             }
         });
 
+        //스피너로 이름 선택
+        arrayAdapter = ArrayAdapter.createFromResource(this, R.array.name_array, android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(arrayAdapter);
+
 
     }
     @Override
@@ -163,7 +185,6 @@ public class CameraActivity extends AppCompatActivity {
         List<ResolveInfo> list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
         return list.size() > 0;
     }
-
 
 
 }
