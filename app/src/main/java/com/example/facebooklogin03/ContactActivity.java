@@ -31,7 +31,6 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class ContactActivity extends AppCompatActivity {
-    TextView textView;
     RecyclerView recyclerView;
     ArrayList<Contact> contactList;
 
@@ -39,15 +38,15 @@ public class ContactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
-        textView = findViewById(R.id.textView);
         recyclerView = findViewById(R.id.recyclerView);
 //        if (android.os.Build.VERSION.SDK_INT > 9) { //oncreate 에서 바로 쓰레드돌릴려고 임시방편으로 넣어둔소스
 //            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 //            StrictMode.setThreadPolicy(policy);
 //        }
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-        String currentDateandTime = sdf.format(new Date());
-        new JSONTask().execute("http://192.249.19.252:2380/contacts?id=권형근&date=" + currentDateandTime);
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
+//        String currentDateandTime = sdf.format(new Date());
+        new JSONTask().execute("http://192.249.19.252:2380/contacts?func=tel&id=parkchaelin");
+//        new JSONTask().execute("http://192.249.19.252:2380/contacts?func=tel&date="+currentDateandTime);
 
 
 
@@ -72,7 +71,7 @@ public class ContactActivity extends AppCompatActivity {
                     URL url = new URL(urls[0]);
                     //연결을 함s
                     con = (HttpURLConnection) url.openConnection();
-//                    Log.d("message", "어디까지1");
+                    Log.d("message", "어디까지1");
 //
                     con.setRequestMethod("GET");//POST방식으로 보냄
 //                    con.setRequestProperty("Cache-Control", "no-cache");//캐시 설정
@@ -141,13 +140,12 @@ public class ContactActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             foodlistjsonParser(result);
-            textView.setText(result);//서버로 부터 받은 값을 출력해주는 부
         }
     }
 
     public void foodlistjsonParser(String jsonString) {
-        String name = null;
-        String phone = null;
+//        String name = null;
+//        String phone = null;
         contactList = new ArrayList<>();
 //        String[] arraysum = new String[2];
         try {

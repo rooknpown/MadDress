@@ -29,20 +29,32 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/tel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="contacts"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton"
-        tools:layout_editor_absoluteX="76dp" />
-
-    <Button
-        android:id="@+id/imageButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="이미지"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:adjustViewBounds="true"
+        android:background="#00FFFDFD"
+        android:scaleType="fitCenter"
+        android:src="@drawable/image_contact"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="76dp" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:adjustViewBounds="true"
+        android:background="#00F7F3F3"
+        android:scaleType="fitCenter"
+        android:src="@drawable/image_shirt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

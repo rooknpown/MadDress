@@ -54,7 +54,7 @@ public class PostActivity extends AppCompatActivity {
 //        }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
         String currentDateandTime = sdf.format(new Date());
-        new JSONTask().execute("http://192.249.19.252:2380/post?id="  + id + "&date=" + currentDateandTime + "&top=" + topcolor + "&bot=" + botcolor);
+        new JSONTask().execute("http://192.249.19.252:2380/post?func=image&id="  + id + "&date=" + currentDateandTime + "&top=" + topcolor + "&bot=" + botcolor);
 
 
 
@@ -147,50 +147,39 @@ public class PostActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            foodlistjsonParser(result);
-            textView.setText(result);//서버로 부터 받은 값을 출력해주는 부
+//            foodlistjsonParser(result);
+//            textView.setText(result);//서버로 부터 받은 값을 출력해주는 부
         }
     }
-
-    public void foodlistjsonParser(String jsonString) {
-        String name = null;
-        String phone = null;
-        contactList = new ArrayList<>();
-//        String[] arraysum = new String[2];
-        try {
-            JSONArray jarray = new JSONObject(jsonString).getJSONArray("contact");
-            for (int i = 0; i < jarray.length(); i++) {
-////                HashMap map = new HashMap<>();
+//
+//    public void foodlistjsonParser(String jsonString) {
+//        String name = null;
+//        String phone = null;
+//        contactList = new ArrayList<>();
+////        String[] arraysum = new String[2];
+//        try {
+//            JSONArray jarray = new JSONObject(jsonString).getJSONArray("contact");
+//            for (int i = 0; i < jarray.length(); i++) {
 //                JSONObject jObject = jarray.getJSONObject(i);
+////                Contact contact = new Contact();
+////
+////                contact.setName(jObject.getString("name"));
+////                contact.setPhone(jObject.getString("phone"));
+//                contactList.add(new Contact(jObject.getString("name"),jObject.getString("phone")));
+//                Log.d("name", jObject.getString("name"));
 //
-//                name = jObject.optString("name");
-//                Log.d("name", name);
 //
-//                phone = jObject.optString("phone");
-//                Log.d("phone", phone);
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        showList();
 //
-//                arraysum[0] = name;
-//                arraysum[1] = phone;
-                JSONObject jObject = jarray.getJSONObject(i);
-//                Contact contact = new Contact();
-//
-//                contact.setName(jObject.getString("name"));
-//                contact.setPhone(jObject.getString("phone"));
-                contactList.add(new Contact(jObject.getString("name"),jObject.getString("phone")));
-                Log.d("name", jObject.getString("name"));
-
-
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        showList();
-
-    }
-    public void showList(){
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(manager); // LayoutManager 등록
-        recyclerView.setAdapter(new RVAdapter(contactList));  // Adapter 등록
-    }
+//    }
+//    public void showList(){
+//        LinearLayoutManager manager = new LinearLayoutManager(this);
+//        recyclerView.setLayoutManager(manager); // LayoutManager 등록
+//        recyclerView.setAdapter(new RVAdapter(contactList));  // Adapter 등록
+//    }
 
 }
