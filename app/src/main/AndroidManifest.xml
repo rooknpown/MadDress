@@ -30,6 +30,7 @@
         <activity android:name=".CameraActivity" />
         <activity android:name=".PostActivity" />
         <activity android:name=".ClassActivity" />
+        <activity android:name=".ClosetActivity" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.facebooklogin03.fileprovider"

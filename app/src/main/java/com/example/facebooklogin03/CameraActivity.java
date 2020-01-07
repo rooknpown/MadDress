@@ -59,6 +59,7 @@ public class CameraActivity extends AppCompatActivity {
     ImageButton cameraButton;
     ImageView imageView;
     ImageButton realButton;
+    ImageButton searchButton;
     final int CAMERA_REQUEST_CODE = 1;
     int x, y, Redt, Bluet, Greent, Redb, Blueb, Greenb;
     TextView colorView;
@@ -83,6 +84,7 @@ public class CameraActivity extends AppCompatActivity {
         SendButton = findViewById(R.id.btnsend);
         spinner = findViewById(R.id.spinner);
         realButton = findViewById(R.id.realButton);
+        searchButton = findViewById(R.id.searchButton);
 
         SendButton.setOnClickListener(new View.OnClickListener(){
 
@@ -148,6 +150,14 @@ public class CameraActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),ClassActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        searchButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),ClosetActivity.class);
                 startActivity(intent);
             }
         });
