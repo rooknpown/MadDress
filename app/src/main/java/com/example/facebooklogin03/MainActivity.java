@@ -36,16 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("email");
-        //연락처 버튼 클릭시
-        tel = (ImageButton) findViewById(R.id.tel);
-        tel.setOnClickListener(new View.OnClickListener(){
 
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ContactActivity.class);
-                startActivity(intent);
-            }
-        });
 
         //이미지 버튼 클릭시
         imageButton = findViewById(R.id.imageButton);
@@ -84,6 +75,16 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
                         textView.setText("Successfully logged in");
+                        //연락처 버튼 클릭시
+                        tel = (ImageButton) findViewById(R.id.tel);
+                        tel.setOnClickListener(new View.OnClickListener(){
+
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getApplicationContext(), ContactActivity.class);
+                                startActivity(intent);
+                            }
+                        });
 
                     }
 

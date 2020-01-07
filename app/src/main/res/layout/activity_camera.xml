@@ -16,8 +16,8 @@
 
             <ImageButton
                 android:id="@+id/cameraButton"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
@@ -28,9 +28,21 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
+                android:id="@+id/searchButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                android:src="@drawable/image_search"
+                app:layout_constraintEnd_toStartOf="@+id/realButton"
+                app:layout_constraintStart_toEndOf="@+id/cameraButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
                 android:id="@+id/realButton"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
@@ -44,10 +56,12 @@
 
     </LinearLayout>
 
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="400dp" />
+        android:layout_height="400dp"
+        android:src="@drawable/image_color"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -93,11 +107,16 @@
                 app:layout_constraintStart_toEndOf="@+id/color2"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnsend"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                android:src="@drawable/image_check"
                 android:text="보내기!"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -28,6 +28,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -60,13 +61,11 @@ public class CameraActivity extends AppCompatActivity {
     ImageButton realButton;
     final int CAMERA_REQUEST_CODE = 1;
     int x, y, Redt, Bluet, Greent, Redb, Blueb, Greenb;
-    //
-    int alpt, alpb;
     TextView colorView;
     TextView colorView2;
     int i=0;
     Bitmap bitmap;
-    Button SendButton;
+    ImageButton SendButton;
     Spinner spinner;
     ArrayAdapter arrayAdapter;
     String mCurrentPhotoPath;
@@ -98,9 +97,10 @@ public class CameraActivity extends AppCompatActivity {
 //                    intent.putExtra("colorbot",String.format("%03d",Redb)+ String.format("%03d",Blueb) + String.format("%03d",Greenb));
 //                    intent.putExtra("id", text);
 //                    startActivity(intent);
-                    String top = String.format("%03d",Redt)+ String.format("%03d",Bluet) + String.format("%03d",Greent);
-                    String bottom = String.format("%03d",Redb)+ String.format("%03d",Blueb) + String.format("%03d",Greenb);
+                    String top = String.format("%03d",Redt)+ String.format("%03d",Greent) + String.format("%03d",Bluet);
+                    String bottom = String.format("%03d",Redb)+ String.format("%03d",Greenb) + String.format("%03d",Blueb);
                     insertDress(text, top, bottom);
+                    Toast.makeText(CameraActivity.this, "저장 성공", Toast.LENGTH_SHORT).show();
                 }
 
 
