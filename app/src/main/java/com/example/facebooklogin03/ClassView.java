@@ -20,12 +20,47 @@ public class ClassView extends View{
     String[] mtopstr;
     String[] mbotstr;
     HashMap<Integer, String> tablemap;
+    Boolean[] mateexist = new Boolean[20];
 
     public ClassView(Context context, Boolean[] exist, String[] topstr, String[] botstr) {
         super(context);
         mexist = exist;
         mtopstr = topstr;
         mbotstr = botstr;
+        HashMap<Integer, Integer> tablemap = new HashMap();
+        tablemap.put(0, 0);
+        tablemap.put(1, 5);
+        tablemap.put(2, 3);
+        tablemap.put(3, 2);
+        tablemap.put(4, 4);
+        tablemap.put(5, 1);
+        tablemap.put(6, 10);
+        tablemap.put(7, 11);
+        tablemap.put(8, 8);
+        tablemap.put(9, 9);
+        tablemap.put(10, 6);
+        tablemap.put(11, 7);
+        tablemap.put(12, 16);
+        tablemap.put(13, 17);
+        tablemap.put(14, 18);
+        tablemap.put(15, 19);
+        tablemap.put(16, 12);
+        tablemap.put(17, 13);
+        tablemap.put(18, 14);
+        tablemap.put(19, 15);
+        for(int i=0;i<20;i++){
+            if(mexist[tablemap.get(i)]){
+                mateexist[i] = true;
+            }
+            else{
+                mateexist[i] = false;
+            }
+        }
+        if(!(mexist[0]&&mexist[4]&&mexist[8])){
+            mateexist[0] = false;
+            mateexist[4] = false;
+            mateexist[8] = false;
+        }
 
         // create the Paint and set its color
     }
@@ -68,16 +103,37 @@ public class ClassView extends View{
                         pt.setColor(Color.BLACK);
                     else
                         pt.setColor(Color.WHITE);
-                    pt.setTextSize(30);
-                    canvas.rotate(90, 100 + 250 * j, 150 + 310 * i-40);
-                    canvas.drawText(tablemap.get(k), 100 + 250 * j, 150 + 310 * i-40, pt);
-                    canvas.rotate(-90, 100 + 250 * j, 150 + 310 * i-40);
+                    pt.setTextSize(35);
+                    //이름출력
+                    canvas.rotate(90, 100 + 250 * j, 150 + 310 * i-45);
+                    canvas.drawText(tablemap.get(k), 100 + 250 * j, 150 + 310 * i-45, pt);
+                    canvas.rotate(-90, 100 + 250 * j, 150 + 310 * i-45);
 
+                    //원 테두리 출력
                     canvas.drawCircle(100 + 250 * j, 150 + 310 * i, 70, pt2);
 
                     pt.setColor(Color.rgb( Integer.parseInt(mtopstr[k].substring(0,3)), Integer.parseInt(mtopstr[k].substring(3,6)), Integer.parseInt(mtopstr[k].substring(6,9))));
                     canvas.drawCircle(190 + 250 * j, 150 + 310 * i, 50, pt);
+                    yiq = (Integer.parseInt(mtopstr[k].substring(0,3)) * 299 + Integer.parseInt(mtopstr[k].substring(3,6)) * 587 + Integer.parseInt(mtopstr[k].substring(6,9)) * 114) / 1000;
+                    if(yiq >= 128)
+                        pt.setColor(Color.BLACK);
+                    else
+                        pt.setColor(Color.WHITE);
+//                    pt.setTextSize(40);
+                    if(mateexist[k]){
+                        canvas.rotate(90, 190 + 250 * j, 150 + 310 * i-23);
+                        canvas.drawText("^_^", 190 + 250 * j, 150 + 310 * i-23, pt);
+                        canvas.rotate(-90, 190 + 250 * j, 150 + 310 * i-23);
+                    }else{
+                        canvas.rotate(90, 190 + 250 * j, 150 + 310 * i-30);
+                        canvas.drawText("ㅠㅠ", 190 + 250 * j, 150 + 310 * i-30, pt);
+                        canvas.rotate(-90, 190 + 250 * j, 150 + 310 * i-30);
+                    }
+
+
+
                     canvas.drawCircle(190 + 250 * j, 150 + 310 * i, 50, pt2);
+
 
                 }
                 k++;
@@ -95,14 +151,34 @@ public class ClassView extends View{
                         pt.setColor(Color.BLACK);
                     else
                         pt.setColor(Color.WHITE);
-                    pt.setTextSize(30);
-                    canvas.rotate(90, 100 + 250 * j, 1400 + 310 * i-40);
-                    canvas.drawText(tablemap.get(k), 100 + 250 * j, 1400 + 310 * i-40, pt);
-                    canvas.rotate(-90, 100 + 250 * j, 1400 + 310 * i-40);
+                    pt.setTextSize(35);
+                    canvas.rotate(90, 100 + 250 * j, 1400 + 310 * i-45);
+                    canvas.drawText(tablemap.get(k), 100 + 250 * j, 1400 + 310 * i-45, pt);
+                    canvas.rotate(-90, 100 + 250 * j, 1400 + 310 * i-45);
+
                     canvas.drawCircle(100 + 250 * j, 1400 + 310 * i, 70, pt2);
 
                     pt.setColor(Color.rgb( Integer.parseInt(mtopstr[k].substring(0,3)), Integer.parseInt(mtopstr[k].substring(3,6)), Integer.parseInt(mtopstr[k].substring(6,9))));
                     canvas.drawCircle(190 + 250 * j, 1400 + 310 * i, 50, pt);
+
+                    yiq = (Integer.parseInt(mtopstr[k].substring(0,3)) * 299 + Integer.parseInt(mtopstr[k].substring(3,6)) * 587 + Integer.parseInt(mtopstr[k].substring(6,9)) * 114) / 1000;
+                    if(yiq >= 128)
+                        pt.setColor(Color.BLACK);
+                    else
+                        pt.setColor(Color.WHITE);
+
+                    if(mateexist[k]){
+                        canvas.rotate(90, 190 + 250 * j, 1400 + 310 * i-23);
+                        canvas.drawText("^_^", 190 + 250 * j, 1400 + 310 * i-23, pt);
+                        canvas.rotate(-90, 190 + 250 * j, 1400 + 310 * i-23);
+                    } else{
+                        canvas.rotate(90, 190 + 250 * j, 1400 + 310 * i-30);
+                        canvas.drawText("ㅠㅠ", 190 + 250 * j, 1400 + 310 * i-30, pt);
+                        canvas.rotate(-90, 190 + 250 * j, 1400 + 310 * i-30);
+                    }
+
+
+
                     canvas.drawCircle(190 + 250 * j, 1400 + 310 * i, 50, pt2);
 
                 }

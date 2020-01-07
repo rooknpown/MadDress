@@ -149,14 +149,11 @@ public class ClassActivity extends Activity {
         tablemap.put("권형근", 18);
         tablemap.put("이현재", 19);
         String name = null;
-        String phone = null;
         Integer loc = null;
         contactList = new ArrayList<>();
-//        String[] arraysum = new String[2];
         try {
             JSONArray jarray = new JSONObject(jsonString).getJSONArray("pastdress");
             for (int i = 0; i < jarray.length(); i++) {
-////                HashMap map = new HashMap<>();
                 JSONObject jObject = jarray.getJSONObject(i);
 //
                 name = jObject.optString("name");

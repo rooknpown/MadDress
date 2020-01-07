@@ -43,7 +43,6 @@ public class RVAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public int getItemCount() {
-        Log.d("dkjfdf", String.valueOf(myDataList.size()));
         return myDataList.size();
 
     }

@@ -4,15 +4,11 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.util.Log;
+
 import android.view.View;
 
-import java.util.ArrayList;
 
 public class ClosetView extends View{
-    private Paint[] toppt = new Paint[20];
-    private Paint[] botpt = new Paint[20];
     private Paint pt = new Paint();
     int mlength;
     String[] mtopstr;
@@ -34,7 +30,6 @@ public class ClosetView extends View{
         pt2.setStrokeWidth(5);
         pt2.setStyle(Paint.Style.STROKE);
         pt2.setColor(Color.BLACK);
-        Log.d("aaaaaaaaaaaaaaaaaaaaa", "gggggggggg");
         if (mlength>0) {
             pt.setColor(Color.rgb(Integer.parseInt(mbotstr[6].substring(0, 3)), Integer.parseInt(mbotstr[6].substring(3, 6)), Integer.parseInt(mbotstr[6].substring(6, 9))));
             canvas.drawCircle(550, 670, 280, pt);
@@ -67,11 +62,7 @@ public class ClosetView extends View{
             canvas.drawCircle(275+265*(2-k) , 1300,50, pt);
             canvas.drawCircle(275+265*(2-k) , 1300,50, pt2);
 
-
         }
-
-
-
 
     }
 }

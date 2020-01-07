@@ -91,14 +91,9 @@ public class CameraActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String text = spinner.getSelectedItem().toString();
-                Intent intent = new Intent(getApplicationContext(),PostActivity.class);
                 if(text.equals("이름 선택")){
                     Toast.makeText(CameraActivity.this, "이름을 선택하세요", Toast.LENGTH_SHORT).show();
                 }else{
-//                    intent.putExtra("colortop",String.format("%03d",Redt)+ String.format("%03d",Bluet) + String.format("%03d",Greent));
-//                    intent.putExtra("colorbot",String.format("%03d",Redb)+ String.format("%03d",Blueb) + String.format("%03d",Greenb));
-//                    intent.putExtra("id", text);
-//                    startActivity(intent);
                     String top = String.format("%03d",Redt)+ String.format("%03d",Greent) + String.format("%03d",Bluet);
                     String bottom = String.format("%03d",Redb)+ String.format("%03d",Greenb) + String.format("%03d",Blueb);
                     insertDress(text, top, bottom);
@@ -115,19 +110,16 @@ public class CameraActivity extends AppCompatActivity {
                 != PackageManager.PERMISSION_GRANTED) {
             //권한이 부여되면 PERMISSION_GRANTED 거부되면 PERMISSION_DENIED 리턴
 
-//권한 요청 할 필요가 있는가?
+            //권한 요청 할 필요가 있는가?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.CAMERA)) {
-
             } else {
                 //권한 요청을 해야할 필요가 있는 경우(사용자가 DONT ASK ME AGIAN CHECK + DENY 선택)
-
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.CAMERA},
                         CAMERA_REQUEST_CODE);
             }
         }
-
 
         cameraButton.setOnClickListener(new View.OnClickListener(){
 
@@ -142,7 +134,6 @@ public class CameraActivity extends AppCompatActivity {
                             break;
                     }
                 }
-
             }
         });
 
@@ -253,14 +244,6 @@ public class CameraActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == CAMERA_REQUEST_CODE) {
-//            Bundle bundle = data.getExtras();
-////            Bitmap bitmap = (Bitmap) bundle.get("data");
-//            bitmap = (Bitmap) bundle.get("data");
-//            imageView.setImageBitmap(bitmap);
-//
-//        }
         super.onActivityResult(requestCode, resultCode, data);
         try {
             switch (requestCode) {
@@ -336,27 +319,19 @@ public class CameraActivity extends AppCompatActivity {
                 BufferedReader reader = null;
 
                 try {
-                    //URL url = new URL("http://192.249.19.252:2380/ucontacts");
                     URL url = new URL(urls[0]);
-                    //연결을 함s
+                    //연결을 함
                     con = (HttpURLConnection) url.openConnection();
-//                    Log.d("message", "어디까지1");
-//
                     con.setRequestMethod("POST");//POST방식으로 보냄
                     con.setRequestProperty("Cache-Control", "no-cache");//캐시 설정
-//                    con.setRequestProperty("Content-Type", "application/json");//application JSON 형식으로 전송
                     con.setRequestProperty("Content-Type", "application/x-www-form-url-urlencoded");
-//                    con.setRequestProperty("Accept", "text/html");//서버에 response 데이터를 html로 받음
                     con.setRequestProperty("Accept-Charset", "UTF-8");
-//                    con.setUseCaches(false);
                     con.setDoOutput(true);//Outstream으로 post 데이터를 넘겨주겠다는 의미
                     con.setDoInput(true);//Inputstream으로 서버로부터 응답을 받겠다는 의미
                     con.connect();
-                    Log.d("message", "어디까지2");
 
 //                    서버로 보내기위해서 스트림 만듬
                     OutputStream outStream = con.getOutputStream();
-                    Log.d("message", "어디까지3");
                     //버퍼를 생성하고 넣음
                     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outStream));
                     writer.write(jsonObject.toString());
@@ -365,20 +340,16 @@ public class CameraActivity extends AppCompatActivity {
 
                     //서버로 부터 데이터를 받음
                     InputStream stream = con.getInputStream();
-                    Log.d("message", "어디까지4");
 
                     reader = new BufferedReader(new InputStreamReader(stream));
 
 
                     StringBuffer buffer = new StringBuffer();
-                    Log.d("message", "어디까지5");
 
                     String line = "";
                     while ((line = reader.readLine()) != null) {
                         buffer.append(line);
-                        Log.d("message", "어디까지6");
                     }
-                    Log.d("buffer", buffer.toString());
                     return buffer.toString();//서버로 부터 받은 값을 리턴해줌 아마 OK!!가 들어올것임
 
 
@@ -408,8 +379,6 @@ public class CameraActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-//            foodlistjsonParser(result);
-//            textView.setText(result);//서버로 부터 받은 값을 출력해주는 부
         }
     }
 
